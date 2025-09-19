@@ -85,7 +85,6 @@ public class StudentDaoImpl implements GenericDaoCrud<Student, Long, String>, St
 
     @Override
     public void sortByName(String s) {
-        //сортировка студентов в внутри каждой группы
         for(Group group : Database.groupList){
             if("a".equalsIgnoreCase(s)){
                 group.getStudents().sort(Comparator.comparing(Student::getFirstName));
@@ -97,19 +96,6 @@ public class StudentDaoImpl implements GenericDaoCrud<Student, Long, String>, St
             for(Student student : group.getStudents()){
                 System.out.println(student);
             }
-        }
-        //сортировка студентов всех вместе взятых
-        List<Student> allStudent = new ArrayList<>();
-        for(Group g : Database.groupList){
-            allStudent.addAll(g.getStudents());
-        }
-        if("a".equalsIgnoreCase(s)){
-            allStudent.sort(Comparator.comparing(Student::getFirstName));
-        } else if ("z".equalsIgnoreCase(s)) {
-            allStudent.sort(Comparator.comparing(Student::getFirstName).reversed());
-        }
-        for(Student student : allStudent){
-            System.out.println(student);
         }
     }
 
